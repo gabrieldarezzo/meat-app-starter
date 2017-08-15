@@ -15,6 +15,7 @@ import { RestaurantComponent } from './restaurants/restaurant/restaurant.compone
 
 import { RestaurantService } from './restaurants/restaurant.service';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
+import { OrderService } from './order/order.service';
 
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { MenuComponent } from './restaurant-detail/menu/menu.component';
@@ -25,6 +26,9 @@ import { OrderComponent } from './order/order.component';
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
+import { OrderSumarryComponent } from './order-sumarry/order-sumarry.component';
+import { RatingComponent } from './shared/rating/rating.component';
 
 
 
@@ -44,7 +48,10 @@ import { OrderItemsComponent } from './order/order-items/order-items.component';
     OrderComponent,
     InputComponent,
     RadioComponent,
-    OrderItemsComponent
+    OrderItemsComponent,
+    DeliveryCostsComponent,
+    OrderSumarryComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,7 @@ import { OrderItemsComponent } from './order/order-items/order-items.component';
     RouterModule.forRoot(ROUTES),
     FormsModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}, RestaurantService, ShoppingCartService],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}, RestaurantService, ShoppingCartService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
