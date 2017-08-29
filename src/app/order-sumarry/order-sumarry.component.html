@@ -7,7 +7,10 @@
     <p>Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando!</p>
     <p><b>Avalie</b> sua experiência:</p>
     <p>
-      <mt-rating></mt-rating>
+      <mt-rating (rated)="rated = true" ></mt-rating>
+    </p>
+    <p [hidden]="!rated">
+        Obrigado pela sua avaliação!
     </p>
 
   </div>

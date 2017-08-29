@@ -10,7 +10,7 @@
             {{form.value | json}}
             -->
 
-              <form #form="ngForm" novalidate >
+              <form [formGroup]="orderForm" novalidate >
                 <div class="row">
                   <div class="col-xs-12">
                     <h2 class="page-header">
@@ -19,23 +19,55 @@
                   </div>
                 </div>
 
-                <div class="row invoice-info">
+                <div class="row">
+                  <div class="col-xs-12 col-xs-9">
+                    <p class="lead">Seus Dados:</p>
+                  </div>
+
+
+                  <div class="col-xs-12 col-xs-3">
+                    <span class="help-block pull-right has-error-block" *ngIf="orderForm.hasError('emailsNotMath')"><i class="fa fa-remove"></i> E-mails não conferem</span>
+                  </div>
+
+                  <div class="col-sm-6 col-xs-12">
+                    <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
+                      <input placeholder="Preencha o endereço" class="form-control" type="text" formControlName="name" autocomplete="off">
+                    </mt-input-container>
+                  </div>
+
+                  <div class="col-sm-3 col-xs-6">
+                    <mt-input-container errorMessage="E-mail invalido" label="E-mail">
+                      <input placeholder="E-mail" class="form-control" type="email" formControlName="email" autocomplete="off" >
+                    </mt-input-container>
+                  </div>
+
+                  <div class="col-sm-3 col-xs-6">
+                    <mt-input-container errorMessage="Confirmação E-mail invalido" label="E-mail">
+                      <input placeholder="Confirmação E-mail" class="form-control" type="email" formControlName="emailConfirmation" autocomplete="off" >
+                    </mt-input-container>
+                  </div>
+
+
+
+                </div>
+
+                <div class="row">
                   <div class="col-xs-12">
                     <p class="lead">Endereço de Entrega:</p>
                   </div>
                   <div class="col-sm-6 col-xs-12">
                     <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Endereço">
-                      <input placeholder="Preencha o endereço" class="form-control" type="text" name="address" ngModel required minlength="5" autocomplete="off">
+                      <input placeholder="Preencha o endereço" class="form-control" type="text" formControlName="address" autocomplete="off">
                     </mt-input-container>
                   </div>
                   <div class="col-sm-3 col-xs-6">
                     <mt-input-container errorMessage="Obrigatório e somente números" label="Número">
-                      <input placeholder="Número" class="form-control" type="text" name="number" ngModel required autocomplete="off" pattern="^[0-9]*$" >
+                      <input placeholder="Número" class="form-control" type="text" formControlName="number" autocomplete="off" pattern="^[0-9]*$" >
                     </mt-input-container>
                   </div>
                   <div class="col-sm-3 col-xs-6">
                     <mt-input-container errorMessage="Campo obrigatório" label="Número">
-                      <input placeholder="Complemento" class="form-control" type="text" name="optionalAddress" ngModel autocomplete="off">
+                      <input placeholder="Complemento" class="form-control" type="text" formControlName="optionalAddress" autocomplete="off">
                     </mt-input-container>
                   </div>
                   <!-- /.col -->
@@ -65,7 +97,7 @@
                     <p class="lead">Formas de Pagamento:</p>
 
                       <div class="form-group">
-                        <mt-radio [options]="patymentOptions" name="patymentOption" ngModel required></mt-radio>
+                        <mt-radio [options]="paymentOptions" formControlName="paymentOption" ></mt-radio>
                       </div>
 
                   </div>
@@ -88,8 +120,8 @@
 
               <div class="row">
                 <div class="col-xs-12">
-                  <button (click)="checkOrder(form.value)" class="btn btn-success pull-right"
-                    [disabled]="!form.valid || cartItems().length === 0"><i class="fa fa-credit-card">
+                  <button (click)="checkOrder(orderForm.value)" class="btn btn-success pull-right"
+                    [disabled]="!orderForm.valid || cartItems().length === 0"><i class="fa fa-credit-card">
                       </i> Concluir Pedido
                   </button>
                 </div>
